@@ -70,6 +70,7 @@ The color pulse mode works like exactly like shift.
 ```
 sudo OpenDarkCore --pulse random --speed 3 #Pulses randomly with the speed 3.
 sudo OpenDarkCore --pulse 255 0 0 0 0 255 --speed 1 #Pulses red and blue with the speed 1
+```
 
 #### DPI
 
