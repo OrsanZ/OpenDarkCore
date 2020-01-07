@@ -1,6 +1,6 @@
 # OpenDarkCore
 
-OpenDarkCore is an open source CLI for Corsair's Dark Core and Dark Core SE.
+OpenDarkCore is an open source CLI for Corsair's Dark Core and Dark Core SE on **Linux**.
 
 ### Dependencies
 - libusb-1.0
