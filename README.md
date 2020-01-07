@@ -82,10 +82,12 @@ sudo opendarkcore --pulse 255 0 0 0 0 255 --speed 1 #Pulses red and blue with th
 To use the DPI mode, specify a profile, ranging from 0 to 3 and a DPI value between 100 and 16000.
 
 The DPI profiles are:
-0. Sniper mode
-1. Profile 1
-2. Profile 2
-3. Profile 3
+<ul>
+  <li>0. Sniper mode</li>
+  <li>1. Profile 1</li>
+  <li>2. Profile 2</li>
+  <li>3. Profile 3</li>
+</ul>
 
 Example:
 ```
