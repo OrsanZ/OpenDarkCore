@@ -2,6 +2,11 @@
 
 OpenDarkCore is an open source CLI for Corsair's Dark Core and Dark Core SE.
 
+### Dependencies
+- libusb-1.0
+- make (make)
+- gcc (make)
+
 ### Building OpenDarkCore
 To build the application, simply clone this repo and cd into it. Then use make.
 
@@ -18,7 +23,7 @@ To use these operation modes, OpenDarkCore needs **root privileges**.
 
 A guide to the different operation modes can be displayed using:
 ```
-OpenDarkCore --help
+opendarkcore --help
 ```
 
 #### Experimental features
@@ -37,39 +42,39 @@ OpenDarkCore provides the same lighting modes as Corsair's iCUE, those being:
 ##### Static
 The static mode is dead simple, to make your mouse a static color, use
 ```
-sudo OpenDarkCore --static <R> <G> <B>
+sudo opendarkcore --static <R> <G> <B>
 ```
 for the color white, one would use
 ```
-sudo OpenDarkCore --static 255 255 255
+sudo opendarkcore --static 255 255 255
 ```
 
 ##### Rainbow
 The rainbow mode is even simpler. To make your mouse look like a christmas ornament on acid, use
 ```
-sudo OpenDarkCore --rainbow
+sudo opendarkcore --rainbow
 ```
 Additionally, the speed of the rainbow can be specified using `--speed <s>`. The speed value can be an integer from 1 to 3,
 3 being the fastest and 1 being the slowest. The `--speed` argument is also valid for the color shift and color pulse mode.
 
 ```
-sudo OpenDarkCore --rainbow --speed 3
+sudo opendarkcore --rainbow --speed 3
 ```
 
 ##### Color Shift
 The color shift mode works like rainbow, but requires the 2 colors to be shifted between, or random for randomized colors.
 
 ```
-sudo OpenDarkCore --shift random --speed 3 #Shifts between random colors with the speed 3.
-sudo OpenDarkCore --shift 255 0 0 0 0 255 --speed 1 #Shifts between red and blue with the speed 1
+sudo opendarkcore --shift random --speed 3 #Shifts between random colors with the speed 3.
+sudo opendarkcore --shift 255 0 0 0 0 255 --speed 1 #Shifts between red and blue with the speed 1
 ```
 
 ##### Color Pulse
 The color pulse mode works like exactly like shift.
 
 ```
-sudo OpenDarkCore --pulse random --speed 3 #Pulses randomly with the speed 3.
-sudo OpenDarkCore --pulse 255 0 0 0 0 255 --speed 1 #Pulses red and blue with the speed 1
+sudo opendarkcore --pulse random --speed 3 #Pulses randomly with the speed 3.
+sudo opendarkcore --pulse 255 0 0 0 0 255 --speed 1 #Pulses red and blue with the speed 1
 ```
 
 #### DPI
@@ -84,5 +89,5 @@ The DPI profiles are:
 
 Example:
 ```
-sudo OpenDarkCore --dpi 1 800 #Sets the DPI of the first profile to 800
+sudo opendarkcore --dpi 1 800 #Sets the DPI of the first profile to 800
 ```
