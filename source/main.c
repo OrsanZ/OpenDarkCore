@@ -6,7 +6,11 @@
 
 #include "../headers/color.h"
 #include "../headers/enums.h"
+#include "../headers/shared.h"
 #include "../headers/errorhandling.h"
+
+libusb_context *ctx = NULL;
+libusb_device_handle *tHandle = NULL;
 
 int main(int arc, char* argv[]) {
     char status = 0;
@@ -48,6 +52,13 @@ int main(int arc, char* argv[]) {
                 "--dpi <profile> <dpi> - Sets the DPI of the mouse\n"
                 "    Requires the DPI profile, 0 for Sniper, 1 for the first, 2 for the second, 3 for the third,\n"
                 "    and the DPI value, from 100 to 16000.\n "
+                "\n"
+                "[Experimental]\n"
+                "--zones - Specifies the mouse zone to be addressed by the lighting. Works similarly to chmod.\n"
+                "Add 1 if you want to address the mouse's back,\n"
+                "add 2 if you want to address the the thumb zone,\n"
+                "add 4 if you want to address the scrollwheel.\n"
+                "\n"
             );
             
             return 0;
@@ -251,12 +262,10 @@ int main(int arc, char* argv[]) {
         return 0;
     }
 
-    libusb_context *ctx;
     libusb_init(&ctx);
 
     libusb_device **list;
     libusb_device *tDevice = NULL;
-    libusb_device_handle *tHandle = NULL;
 
     ssize_t cnt = libusb_get_device_list(ctx, &list);
     if (cnt == 0)
@@ -323,9 +332,10 @@ int main(int arc, char* argv[]) {
         libusb_close(handle);
     }
 
+    libusb_free_device_list(list, 0);
+
     if(tDevice == NULL || tHandle == NULL)
     {
-        libusb_free_device_list(list, 0);
         libusb_exit(ctx);
         return 0;
     }
@@ -354,23 +364,22 @@ int main(int arc, char* argv[]) {
         memcpy(data, (char[16]){0x07, 0x13, 0xD0 + dpi_profile, 0x00, 0x00, dpi1, dpi2, dpi1, dpi2, 0x00, 0x00, 0xFF, 0x00, 0x00, 0x00, 0x00}, 16);
     }
 
+    //Debug the data sent to the mouse
+    /* 
+    for (size_t i = 0; i < sizeof(data); i++) {
+        printf("%i ", data[i]);
+    } 
+    printf("\n");
+    */
+
     status = libusb_bulk_transfer(tHandle, endpoint, data, 16, NULL, 0);
     errhandle(status);
 
-    for (size_t i = 0; i < sizeof(data); i++) {
-        printf("%i ", data[i]);
-    }
-    printf("\n");
+    libusb_attach_kernel_driver(tHandle, 1);
 
+    libusb_release_interface(tHandle, 1);
     libusb_close(tHandle);
-    libusb_free_device_list(list, 0);
     libusb_exit(ctx);
 
     return 0;
 }
-
-/* 
-for (size_t i = 0; i < sizeof(data); i++) {
-    printf("%i ", data[i]);
-} 
-*/

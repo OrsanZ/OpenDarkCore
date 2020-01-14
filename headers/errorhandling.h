@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "shared.h"
+
 void errhandle(int err) {
     if (err == LIBUSB_SUCCESS) return;
 
@@ -60,7 +62,11 @@ void errhandle(int err) {
             break;
     }
 
-    //TODO what about cleanup functions?
+    libusb_attach_kernel_driver(tHandle, 1);
+
+    libusb_release_interface(tHandle, 1);
+    libusb_close(tHandle);
+    libusb_exit(ctx);
 
     exit(err);
 }
