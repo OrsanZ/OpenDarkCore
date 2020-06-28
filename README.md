@@ -48,39 +48,39 @@ OpenDarkCore provides the same lighting modes as Corsair's iCUE, those being:
 ##### Static
 The static mode is dead simple, to make your mouse a static color, use
 ```
-sudo opendarkcore --static <R> <G> <B>
+opendarkcore --static <R> <G> <B>
 ```
 for the color white, one would use
 ```
-sudo opendarkcore --static 255 255 255
+opendarkcore --static 255 255 255
 ```
 
 ##### Rainbow
 The rainbow mode is even simpler. To make your mouse look like a christmas ornament on acid, use
 ```
-sudo opendarkcore --rainbow
+opendarkcore --rainbow
 ```
 Additionally, the speed of the rainbow can be specified using `--speed <s>`. The speed value can be an integer from 1 to 3,
 3 being the fastest and 1 being the slowest. The `--speed` argument is also valid for the color shift and color pulse mode.
 
 ```
-sudo opendarkcore --rainbow --speed 3
+opendarkcore --rainbow --speed 3
 ```
 
 ##### Color Shift
 The color shift mode works like rainbow, but requires the 2 colors to be shifted between, or random for randomized colors.
 
 ```
-sudo opendarkcore --shift random --speed 3 #Shifts between random colors with the speed 3.
-sudo opendarkcore --shift 255 0 0 0 0 255 --speed 1 #Shifts between red and blue with the speed 1
+opendarkcore --shift random --speed 3 #Shifts between random colors with the speed 3.
+opendarkcore --shift 255 0 0 0 0 255 --speed 1 #Shifts between red and blue with the speed 1
 ```
 
 ##### Color Pulse
 The color pulse mode works like exactly like shift.
 
 ```
-sudo opendarkcore --pulse random --speed 3 #Pulses randomly with the speed 3.
-sudo opendarkcore --pulse 255 0 0 0 0 255 --speed 1 #Pulses red and blue with the speed 1
+opendarkcore --pulse random --speed 3 #Pulses randomly with the speed 3.
+opendarkcore --pulse 255 0 0 0 0 255 --speed 1 #Pulses red and blue with the speed 1
 ```
 
 #### DPI
@@ -97,5 +97,5 @@ The DPI profiles are:
 
 Example:
 ```
-sudo opendarkcore --dpi 1 800 #Sets the DPI of the first profile to 800
+opendarkcore --dpi 1 800 #Sets the DPI of the first profile to 800
 ```
