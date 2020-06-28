@@ -19,7 +19,13 @@ make
 ## Using OpenDarkCore
 OpenDarkCore has 5 different operation modes, 4 of those for lighting and 1 for the mouses DPI.
 
-To use these operation modes, OpenDarkCore needs **root privileges**.
+To use these operation modes, OpenDarkCore needs ~~**root privileges**~~ permission to write to the mouse.
+
+You can either run OpenDarkCore as root, or install the udev rule *99-opendarkcore.rules* into your */etc/udev/rules.d/*, and then add yourself to the group *odc*, using:
+```
+sudo usermod -a -G odc <your user>
+```
+After doing so, you should be able to use OpenDarkCore as a non-root user. Keep in mind that for now, the CORSAIR Dark Core RGB **Non-SE** is not supported. If you have that mouse, please open an issue, so I can get its ProductID and make it compatible. 
 
 A guide to the different operation modes can be displayed using:
 ```
