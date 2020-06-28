@@ -1,0 +1,13 @@
+#
+# Allows group access to a CORSAIR DARK CORE RGB SE
+#
+# Part of: https://github.com/OrsanZ/OpenDarkCore
+# Author: OrsanZ
+#
+
+ACTION=="add"\
+, SUBSYSTEMS=="usb"\
+, ATTRS{idVendor}=="1b1c"\
+, ATTRS{idProduct}=="1b4b"\
+, GROUP:="odc"\
+, MODE:="0664"
