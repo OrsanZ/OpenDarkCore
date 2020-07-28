@@ -6,7 +6,6 @@
 #
 
 # Cable attached
-ACTION=="add"\
 , SUBSYSTEMS=="usb"\
 , ATTRS{idVendor}=="1b1c"\
 , ATTRS{idProduct}=="1b4b"\
@@ -14,8 +13,7 @@ ACTION=="add"\
 , MODE:="0664"
 
 # Wireless reciever
-ACTION=="add"\
-, ATTRS{idVendor}=="1b1c"\
+ATTRS{idVendor}=="1b1c"\
 , ATTRS{idProduct}=="1b51"\
 , GROUP:="odc"\
 , MODE:="0664"
