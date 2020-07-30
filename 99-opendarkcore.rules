@@ -6,7 +6,7 @@
 #
 
 # Cable attached
-, SUBSYSTEMS=="usb"\
+SUBSYSTEMS=="usb"\
 , ATTRS{idVendor}=="1b1c"\
 , ATTRS{idProduct}=="1b4b"\
 , GROUP:="odc"\
