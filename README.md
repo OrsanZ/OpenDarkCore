@@ -22,12 +22,12 @@ make
 
 OpenDarkCore has 5 different operation modes, 4 of those for lighting and 1 for the mouses DPI.
 
-To use these operation modes, OpenDarkCore needs ~~**root privileges**~~ permission to write to the mouse.
+To use these operation modes, OpenDarkCore needs permission to write to the mouse.
 
-You can either run OpenDarkCore as root (which is not recommended), or install the udev rule _99-opendarkcore.rules_ into your _/etc/udev/rules.d/_, and then add yourself to the group _odc_, using:
+You can either run OpenDarkCore as root (which is far from recommended), or install the udev rule _99-opendarkcore.rules_ into your _/etc/udev/rules.d/_, and then add yourself to the group _plugdev_, using:
 
 ```
-sudo usermod -a -G odc <your user>
+sudo usermod -a -G plugdev <your user>
 ```
 
 After doing so, you should be able to use OpenDarkCore as a non-root user. Keep in mind that for now, the CORSAIR Dark Core RGB **Non-SE** is not supported. If you have that mouse, please open an issue, so I can get its ProductID and make it compatible.
@@ -38,14 +38,6 @@ A guide to the different operation modes can be displayed using:
 opendarkcore --help
 ```
 
-#### Experimental features
-
-- The `--zones` argument does not work consistently.
-
-#### To be implemented
-
-- The option to disable dpi profiles.
-
 #### Lighting
 
 OpenDarkCore provides the same lighting modes as Corsair's iCUE, those being:
@@ -55,18 +47,20 @@ OpenDarkCore provides the same lighting modes as Corsair's iCUE, those being:
 - Color Shift
 - Color Pulse
 
+Colors a specified in classic hex fassion, like ff00ff for purple. Spare the **#** please.
+
 ##### Static
 
 The static mode is dead simple, to make your mouse a static color, use
 
 ```
-opendarkcore --static <R> <G> <B>
+opendarkcore --static --color=RRGGBB
 ```
 
 for the color white, one would use
 
 ```
-opendarkcore --static 255 255 255
+opendarkcore --static --color=ffffff
 ```
 
 ##### Rainbow
@@ -77,11 +71,11 @@ The rainbow mode is even simpler. To make your mouse look like a christmas ornam
 opendarkcore --rainbow
 ```
 
-Additionally, the speed of the rainbow can be specified using `--speed <s>`. The speed value can be an integer from 1 to 3,
+Additionally, the speed of the rainbow can be specified using `--speed=SPEED`. The speed value can be an integer from 1 to 3,
 3 being the fastest and 1 being the slowest. The `--speed` argument is also valid for the color shift and color pulse mode.
 
 ```
-opendarkcore --rainbow --speed 3
+opendarkcore --rainbow --speed=3
 ```
 
 ##### Color Shift
@@ -89,8 +83,8 @@ opendarkcore --rainbow --speed 3
 The color shift mode works like rainbow, but requires the 2 colors to be shifted between, or random for randomized colors.
 
 ```
-opendarkcore --shift random --speed 3 #Shifts between random colors with the speed 3.
-opendarkcore --shift 255 0 0 0 0 255 --speed 1 #Shifts between red and blue with the speed 1
+opendarkcore --shift --random --speed=3 #Shifts between random colors with the speed 3.
+opendarkcore --shift --color=ff0000 --color2=0000ff --speed=1 #Shifts between red and blue with the speed 1
 ```
 
 ##### Color Pulse
@@ -98,25 +92,53 @@ opendarkcore --shift 255 0 0 0 0 255 --speed 1 #Shifts between red and blue with
 The color pulse mode works like exactly like shift.
 
 ```
-opendarkcore --pulse random --speed 3 #Pulses randomly with the speed 3.
-opendarkcore --pulse 255 0 0 0 0 255 --speed 1 #Pulses red and blue with the speed 1
+opendarkcore --pulse --random --speed=3 #Pulses randomly with the speed 3.
+opendarkcore --pulse --color=ff0000 --color2=0000ff --speed=1 #Pulses red and blue with the speed 1
 ```
 
 #### DPI
 
-To use the DPI mode, specify a profile, ranging from 0 to 3 and a DPI value between 100 and 16000.
+To use the DPI mode, a DPI value between 100 and 16000, and optionally, a profile, ranging from 0 to 3.
 
 The DPI profiles are:
 
-<ul>
-  <li>0. Sniper mode</li>
-  <li>1. Profile 1</li>
-  <li>2. Profile 2</li>
-  <li>3. Profile 3</li>
-</ul>
+- 0. Sniper mode
+- 1. Profile 1
+- 2. Profile 2
+- 3. Profile 3
 
 Example:
 
 ```
-opendarkcore --dpi 1 800 #Sets the DPI of the first profile to 800
+opendarkcore --dpi=800 #Sets the DPI of the first profile to 800
+opendarkcore --dpi=361 --profile=0 #Sets the dpi value for sniper mode to 361
+```
+
+#### Angle Snapping
+
+I'm not sure if this works, since I don't notice the difference between angle snapping on and off,
+but if you want to enable it, you can use:
+
+```
+opendarkcore --anglesnapping=on
+```
+
+I'll let you figure out how to disable it.
+
+#### Lift Height
+
+You can change your lift height from low to high, by using:
+
+```
+opendarkcore --liftheight=1 #Sets lift height to low
+opendarkcore --liftheight=2 #Sets lift height to medium
+opendarkcore --liftheight=3 #Sets lift height to high
+```
+
+#### Combining options
+
+You can combine options to take care of all your customization needs in one command, like so:
+
+```
+opendarkcore --rainbow --dpi=900 --liftheight=2
 ```
