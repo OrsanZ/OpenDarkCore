@@ -1,72 +1,13 @@
-#include <libusb-1.0/libusb.h>
-#include <stdio.h>
-#include <stdlib.h>
+#ifndef ERRORHANDLING_H
+#define ERRORHANDLING_H
 
-#include "shared.h"
+extern libusb_context *ctx;
+extern libusb_device_handle *target_handle;
+extern int16_t usb_errno;
+extern int16_t usb_verboseno;
+extern int8_t kernel_detached;
 
-void errhandle(int err) {
-    if (err == LIBUSB_SUCCESS) return;
+/* Handles error codes from usb_errno */
+void errhandle();
 
-    switch (err)
-    {
-        case LIBUSB_ERROR_IO:
-            printf("An error occurred: LIBUSB_ERROR_IO: Input/output error. Aborting.\n");
-            break;
-
-        case LIBUSB_ERROR_INVALID_PARAM:
-            printf("An error occurred: LIBUSB_ERROR_INVALID_PARAM: Invalid parameter. Aborting.\n");
-            break;
-
-        case LIBUSB_ERROR_ACCESS:
-            printf("An error occurred: LIBUSB_ERROR_ACCESS: Access denied (insufficient permissions). Try running as root. Aborting.\n");
-            break;
-
-        case LIBUSB_ERROR_NO_DEVICE:
-            printf("An error occurred: LIBUSB_ERROR_NO_DEVICE: No such device (it may have been disconnected). Aborting.\n");
-            break;
-
-        case LIBUSB_ERROR_NOT_FOUND:
-            printf("An error occurred: LIBUSB_ERROR_NOT_FOUND: Entity not found. Aborting.\n");
-            break;
-
-        case LIBUSB_ERROR_BUSY:
-            printf("An error occurred: LIBUSB_ERROR_BUSY: Resource busy. Aborting.\n");
-            break;
-
-        case LIBUSB_ERROR_TIMEOUT:
-            printf("An error occurred: LIBUSB_ERROR_TIMEOUT: Operation timed out. Aborting.\n");
-            break;
-
-        case LIBUSB_ERROR_OVERFLOW:
-            printf("An error occurred: LIBUSB_ERROR_OVERFLOW. Aborting.\n");
-            break;
-
-        case LIBUSB_ERROR_PIPE:
-            printf("An error occurred: LIBUSB_ERROR_PIPE. Aborting.\n");
-            break;
-
-        case LIBUSB_ERROR_INTERRUPTED:
-            printf("An error occurred: LIBUSB_ERROR_INTERRUPTED: System call interrupted (perhaps due to signal). Aborting.\n");
-            break;
-
-        case LIBUSB_ERROR_NO_MEM:
-            printf("An error occurred: LIBUSB_ERROR_NO_MEM: Insufficient memory. Aborting.\n");
-            break;
-
-        case LIBUSB_ERROR_NOT_SUPPORTED:
-            printf("An error occurred: LIBUSB_ERROR_NOT_SUPPORTED: Operation not supported or unimplemented on this platform. Aborting.\n");
-            break;
-
-        case LIBUSB_ERROR_OTHER:
-            printf("An error occurred: LIBUSB_ERROR_OTHER: Unknown error. Aborting.\n");
-            break;
-    }
-
-    libusb_attach_kernel_driver(tHandle, 1);
-
-    libusb_release_interface(tHandle, 1);
-    libusb_close(tHandle);
-    libusb_exit(ctx);
-
-    exit(err);
-}
+#endif
