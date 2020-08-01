@@ -9,12 +9,12 @@
 SUBSYSTEMS=="usb"\
 , ATTRS{idVendor}=="1b1c"\
 , ATTRS{idProduct}=="1b4b"\
-, GROUP:="odc"\
+, GROUP:="plugdev"\
 , MODE:="0664"
 
 # Wireless reciever
 ATTRS{idVendor}=="1b1c"\
 , ATTRS{idProduct}=="1b51"\
-, GROUP:="odc"\
+, GROUP:="plugdev"\
 , MODE:="0664"
 
