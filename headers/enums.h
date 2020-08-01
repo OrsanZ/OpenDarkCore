@@ -1,3 +1,6 @@
+#ifndef ENUM_H
+#define ENUM_H
+
 /* Corresponds to internal values for the Dark Core */
 enum DARK_CORE_SPEED
 {
@@ -26,3 +29,5 @@ enum DARK_CORE_LIGHTING_MODE
   /* Static color */
   DARK_CORE_LIGHTING_MODE_STATIC = 0x07,
 };
+
+#endif
