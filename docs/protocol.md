@@ -53,7 +53,7 @@ These are packages related to hardware DPI profiles.
 
 #### 0e 51
 
-_Response: **0e 00 00 ST**_
+_Response: **0e 51 00 00 ST**_
 <br>
 Might read whether the mouse is connected to the dongle, as it is not sent when directly connected via cable.
 
