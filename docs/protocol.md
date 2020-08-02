@@ -29,7 +29,7 @@ Reads the time it takes for the mouse to go to sleep.
 
 #### 0e 50
 
-**Response: 0e 50 00 00 BA 01**
+**Response: 0e 50 00 00 BA CH**
 <br>
 Reads the battery status.
 <br>
@@ -37,6 +37,7 @@ Reads the battery status.
 | Abbreviation | Values                                                    |
 | ------------ | --------------------------------------------------------- |
 | BA           | 00 Not connected, 01 Critical, 02 Low, 03 Medium, 04 High |
+| CH           | 01 Not charging, 02 Charging                              |
 
 ### Speculation
 
